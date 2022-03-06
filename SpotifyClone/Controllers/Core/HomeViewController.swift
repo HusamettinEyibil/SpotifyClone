@@ -14,6 +14,16 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Home"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
+        fetchData()
+    }
+    
+    private func fetchData() {
+        APICaller.shared.getFeaturedPlaylists { result in
+            switch result {
+            case .success(let model): break
+            case .failure(let error): break
+            }
+        }
     }
 
     @objc func didTapSettings() {
